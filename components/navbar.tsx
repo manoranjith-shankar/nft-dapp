@@ -5,7 +5,6 @@ import {
 	NavbarBrand,
 	NavbarItem,
 } from "@nextui-org/navbar";
-import { Link } from "@nextui-org/link";
 
 import { link as linkStyles } from "@nextui-org/theme";
 
