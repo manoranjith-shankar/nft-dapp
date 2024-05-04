@@ -13,7 +13,7 @@ import {
 } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
 import {
-  sepolia,
+  polygonAmoy,
 } from 'wagmi/chains';
 import {
   QueryClientProvider,
@@ -23,7 +23,7 @@ import {
 const config = getDefaultConfig({
   appName: 'nft-dapp',
   projectId: 'nft-dapp',
-  chains: [sepolia],
+  chains: [polygonAmoy],
 });
 
 export interface ProvidersProps {

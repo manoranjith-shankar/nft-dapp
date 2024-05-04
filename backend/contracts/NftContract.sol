@@ -2,11 +2,9 @@
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzepplin/contracts/utils/Counters.sol";
 
 contract NftContract is ERC721 {
-    using Counters for Counters.Counter;
-    Counters.Counter private _tokenIdCounter;
+    uint256 private _tokenIdCounter;
 
     constructor() ERC721("", "") {}
 
@@ -28,9 +26,9 @@ contract NftContract is ERC721 {
         string memory ipfsNFTImage,
         string memory ipfsNFTMetadata
     ) external returns (uint256) {
-        uint256 tokenId = _tokenIdCounter.current();
+        uint256 tokenId = _tokenIdCounter;
         _safeMint(to, tokenId);
-        _tokenIdCounter.increment();
+        _tokenIdCounter += 1;
         
         _setTokenData(tokenId, name, symbol, description, ipfsNFTImage, ipfsNFTMetadata);
 
