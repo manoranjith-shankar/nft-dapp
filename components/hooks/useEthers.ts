@@ -5,9 +5,10 @@ import address from '@/backend/ignition/deployments/chain-80002/deployed_address
 const abi = NftContract.abi;
 const contractAddress = address['NftContractModule#NftContract'];
 
-const provider = new ethers.BrowserProvider(window.ethereum);
+const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 
+//{To be Fixed}
 const contract = new ethers.Contract(contractAddress, abi, signer);
 
 const useEthers = [ provider, signer, contract, contractAddress, abi ];

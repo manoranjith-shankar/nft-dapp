@@ -5,6 +5,7 @@ import { NextUIProvider } from "@nextui-org/system";
 import { useRouter } from 'next/navigation'
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
+import { Toaster } from 'react-hot-toast';
 
 import '@rainbow-me/rainbowkit/styles.css';
 import {
@@ -42,6 +43,10 @@ export function Providers({ children, themeProps }: ProvidersProps) {
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
 			{children}
+      <Toaster
+        position="bottom-right"
+        reverseOrder={false}
+      />
 			</RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>

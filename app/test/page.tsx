@@ -7,22 +7,26 @@ import address from '@/backend/ignition/deployments/chain-80002/deployed_address
 
 const Page = () => {
 
-  const [provider, signer, contract] = useEthers;
+  const [provider, signer, contract, contractProvider] = useEthers;
   const abi = NftContract.abi;
   const contractAddress = address['NftContractModule#NftContract'];
+
   const contract1 = new ethers.Contract(contractAddress, abi, signer);
   const contract2 = new ethers.Contract(contractAddress, abi, provider);
 
   const handleRequest = async () => {
     try {
-      const metadata = await contract2.getTokenMetadata(1);
-      console.log(metadata, "Token Metadata");
+      const tx = await contract2.balanceOf(
+        signer.getAddress(),
+      );
+      await tx.wait();
+      console.log(tx, "1");
     } catch (error) {
       console.error(error, "Error");
     }
   };
 
-  console.log(contract, "contract")
+  console.log(contract1, "contract")
   console.log(signer, "signer")
   console.log(abi, "abi")
 
