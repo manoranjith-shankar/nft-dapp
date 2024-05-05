@@ -8,12 +8,12 @@ import { useAccount } from 'wagmi';
 import { Card, CardBody, CardHeader, Image } from "@nextui-org/react"
 import useEthers from '@/components/hooks/useEthers';
 
-const [provider, signer, contract, contractProvider] = useEthers;
+const [provider] = useEthers;
 const abi = NftContract.abi;
 const contractAddress = address['NftContractModule#NftContract'];
 const contractInstance = new ethers.Contract(contractAddress, abi, provider);
 
-const OwnedTokens = () => {
+const FetchOwnedTokens = () => {
   const [ownedTokens, setOwnedTokens] = useState([]);
   const [loading, setLoading] = useState(false);
   const signerAddress = useAccount().address;
@@ -81,10 +81,10 @@ const TokenCard = ({ tokenId }) => {
         <h4 className="font-bold text-large">{tokenMetadata ? tokenMetadata.name : 'Loading...'}</h4>
         <p className="text-tiny uppercase font-bold">#{tokenMetadata ? tokenMetadata.symbol : 'Loading...'}</p>
         <small className="text-default-500">{tokenMetadata ? tokenMetadata.description : 'Loading...'}</small>
-        <p className="text-cyan-600 mt-1 text-sm"><a href={`https://www.oklink.com/amoy/address/${contractAddress}`} target='_blank'>{contractAddress}</a></p>
+        <p className="text-cyan-600 mt-1 text-sm hover:underline"><a href={`https://www.oklink.com/amoy/address/${contractAddress}`} target='_blank'>{contractAddress}</a></p>
         </CardBody>
         </Card>
   );
 };
 
-export default OwnedTokens;
+export default FetchOwnedTokens;

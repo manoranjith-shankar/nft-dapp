@@ -10,7 +10,7 @@ export const siteConfig = {
 		},
     {
       label: "View",
-      href: "/view-nfts",
+      href: "/view",
     },
 	],
 };

@@ -20,7 +20,7 @@ const FilePicker: React.FC = () => {
   const [metadataUri, setMetadataUri] = useState<string | null>(null);
   const [isLoading, setisLoading] = useState<boolean>(false);
   const [isTokenCreated, setisTokenCreated] = useState<boolean>(false);
-  const [txHash, setTxHash] = useState<string>("0x0562021a7b5ccabec40c99392fab65679a6f871a2cb7d539de1d51d7418a3e49");
+  const [txHash, setTxHash] = useState<string>("");
 
   const [provider] = useEthers;
   const abi = NftContract.abi;

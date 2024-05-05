@@ -17,6 +17,7 @@ contract NftContract is ERC721 {
     }
 
     mapping(uint256 => NFTMetadata) private _tokenMetadata;
+    mapping(address => uint256[]) private _ownedTokens;
 
     function mintNFT(
         address to,
@@ -31,6 +32,8 @@ contract NftContract is ERC721 {
         _tokenIdCounter += 1;
         
         _setTokenData(tokenId, name, symbol, description, ipfsNFTImage, ipfsNFTMetadata);
+
+        _ownedTokens[to].push(tokenId);
 
         return tokenId;
     }
@@ -48,5 +51,9 @@ contract NftContract is ERC721 {
 
     function getTokenMetadata(uint256 tokenId) external view returns (NFTMetadata memory) {
         return _tokenMetadata[tokenId];
+    }
+
+    function getOwnedTokens(address owner) external view returns (uint256[] memory) {
+        return _ownedTokens[owner];
     }
 }
