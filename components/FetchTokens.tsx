@@ -11,12 +11,11 @@ import useEthers from '@/components/hooks/useEthers';
 const [provider] = useEthers;
 const abi = NftContract.abi;
 const contractAddress = address['NftContractModule#NftContract'];
-const contractInstance = new ethers.Contract(contractAddress, abi, provider);
+const contractInstance = new ethers.Contract(contractAddress, abi, provider as ethers.Signer);
 
 const FetchOwnedTokens = () => {
   const [ownedTokens, setOwnedTokens] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [toAddress, setToAddress] = useState("");
   const signerAddress = useAccount().address;
 
   useEffect(() => {

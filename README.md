@@ -1,30 +1,6 @@
-# Next.js & NextUI Template
-
-This is a template for creating applications using Next.js 14 (app directory) and NextUI (v2).
-
-## Technologies Used
-
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [NextUI v2](https://nextui.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
-
-## How to Use
-
-### Use the template with create-next-app
-
-To create a new project based on this template using `create-next-app`, run the following command:
-
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-app-template
-```
+# Basic Nft Dapp
 
 ### Install dependencies
-
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
 
 ```bash
 npm install
@@ -36,15 +12,25 @@ npm install
 npm run dev
 ```
 
-### Setup pnpm (optional)
+## contracts
 
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
+Replace .env.example to .env and add PRIV_KEY (wallet key) and API_KEY for provider (alchemy, Infura)
 
-```bash
-public-hoist-pattern[]=*@nextui-org/*
+```shell
+cd backend
+npx hardhat ignition deploy ./ignition/modules/NftContract.ts --network <NETWORK_NAME>
 ```
 
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
+This will deploy the contract module to the specified network (hardhat.config.ts)
+## Technologies Used
+
+- [Next.js 14](https://nextjs.org/docs/getting-started)
+- [NextUI v2](https://nextui.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Tailwind Variants](https://tailwind-variants.org)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [next-themes](https://github.com/pacocoursey/next-themes)
 
 ## License
 
