@@ -42,8 +42,6 @@ const FilePicker: React.FC = () => {
   useEffect(() => {
     if (isTokenCreated) {
       toast.success('NFT successfully minted!');
-    } else {
-      toast.error('Something went wrong. Please try again.');
     }
   }, [isTokenCreated]);
 

@@ -10,6 +10,7 @@ import { Toaster } from 'react-hot-toast';
 import '@rainbow-me/rainbowkit/styles.css';
 import {
   getDefaultConfig,
+  midnightTheme,
   RainbowKitProvider,
 } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
@@ -41,7 +42,11 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 			<NextThemesProvider {...themeProps}>
 			<WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>
+        <RainbowKitProvider
+          theme={midnightTheme({
+            overlayBlur: 'large',
+          })}
+        >
 			{children}
       <Toaster
         position="bottom-right"

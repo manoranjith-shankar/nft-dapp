@@ -1,11 +1,11 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { ethers } from 'ethers';
+import { Signer, ethers } from 'ethers';
 import NftContract from '@/backend/ignition/deployments/chain-80002/artifacts/NftContractModule#NftContract.json'
 import address from '@/backend/ignition/deployments/chain-80002/deployed_addresses.json'
 import { useAccount } from 'wagmi';
-import { Card, CardBody, CardHeader, Image } from "@nextui-org/react"
+import { Button, Card, CardBody, CardFooter, CardHeader, Image, Input } from "@nextui-org/react"
 import useEthers from '@/components/hooks/useEthers';
 
 const [provider] = useEthers;
@@ -16,6 +16,7 @@ const contractInstance = new ethers.Contract(contractAddress, abi, provider);
 const FetchOwnedTokens = () => {
   const [ownedTokens, setOwnedTokens] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [toAddress, setToAddress] = useState("");
   const signerAddress = useAccount().address;
 
   useEffect(() => {

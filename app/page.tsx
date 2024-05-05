@@ -1,12 +1,14 @@
 import FilePicker from "@/components/FilePicker";
-import { Button, Card, CardBody, CardFooter, CardHeader, Image, Input } from "@nextui-org/react"
-
+import { Button, Card, CardBody, CardFooter, CardHeader, Image } from "@nextui-org/react"
 
 export default function Home() {
 	return (
 		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
 			<div className="inline-block max-w-lg text-center justify-center">
-			<Card className="py-4">
+        <h1 className="text-2xl font-bold mb-3">Connect your wallet and mint NFTs!</h1>
+		    <FilePicker />
+	    {/* <p className="m-3">OR</p>
+      <Card className="py-4">
       <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
         <h4 className="font-bold text-large">Mint BYC NFTs</h4>
       </CardHeader>
@@ -21,9 +23,7 @@ export default function Home() {
 	  <CardFooter className="justify-center">
 		<Button className="w-full">Mint NFT</Button>
 	  </CardFooter>
-    </Card>
-	<p className="m-3">OR</p>
-		<FilePicker />
+    </Card> */}
 			</div>
 		</section>
 	);
