@@ -4,7 +4,6 @@ import React, { useState, DragEvent, ChangeEvent, useEffect } from 'react';
 import FormData from 'form-data';
 import fetch from 'node-fetch';
 import { Button, Card, CardBody, CardFooter, CardHeader, Input } from "@nextui-org/react"
-import useEthers from './hooks/useEthers';
 import NftContract from '@/backend/ignition/deployments/chain-80002/artifacts/NftContractModule#NftContract.json'
 import address from '@/backend/ignition/deployments/chain-80002/deployed_addresses.json'
 import { ethers } from 'ethers';
@@ -22,10 +21,10 @@ const FilePicker: React.FC = () => {
   const [isTokenCreated, setisTokenCreated] = useState<boolean>(false);
   const [txHash, setTxHash] = useState<string>("");
 
-  const [provider] = useEthers;
   const abi = NftContract.abi;
   const contractAddress = address['NftContractModule#NftContract'];
   const signerAddress = useAccount().address;
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner(signerAddress);
 
   const contractInstance = new ethers.Contract(contractAddress, abi, signer);
