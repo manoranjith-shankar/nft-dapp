@@ -20,6 +20,7 @@ const FilePicker: React.FC = () => {
   const [metadataUri, setMetadataUri] = useState<string | null>(null);
   const [isLoading, setisLoading] = useState<boolean>(false);
   const [isTokenCreated, setisTokenCreated] = useState<boolean>(false);
+  const [txHash, setTxHash] = useState<string>("0x0562021a7b5ccabec40c99392fab65679a6f871a2cb7d539de1d51d7418a3e49");
 
   const [provider] = useEthers;
   const abi = NftContract.abi;
@@ -105,6 +106,9 @@ const FilePicker: React.FC = () => {
       // Set the IPFS URL and metadata URI from the responses
       setIpfsUrl(uploadedIpfsUrl);
       setMetadataUri(uploadedMetadataUri);
+
+      // Return the IPFS URL and metadata URI
+    return { ipfsUrl: uploadedIpfsUrl, metadataUri: uploadedMetadataUri };
     } catch (error) {
       console.error("Error uploading file:", error);
     }
@@ -113,10 +117,11 @@ const FilePicker: React.FC = () => {
   const handleNftMint = async () => {
     setisLoading(true);
     try {
-      await handleUpload();
-      setTimeout(async () => {
-        console.log(ipfsUrl, "IPFS URL")
-        console.log(metadataUri, "Metadata URI")
+      const { ipfsUrl, metadataUri } = await handleUpload();
+      if(!ipfsUrl || !metadataUri) {
+        console.log("No available IPFS URL or Metadata URI")
+        return null;
+      }
         const tx = await contractInstance.mintNFT(
           signerAddress,
           name,
@@ -127,9 +132,9 @@ const FilePicker: React.FC = () => {
         );
         await tx.wait();
         console.log(tx, "Token Created");
+        setTxHash(tx.hash);
         setisLoading(false);
         setisTokenCreated(true);
-      }, 5000);
     } catch (error) {
       console.error(error, "Error");
       setisLoading(false);
@@ -227,14 +232,9 @@ const FilePicker: React.FC = () => {
       }
       >Mint NFT</Button>
   </CardFooter>
-      {ipfsUrl && (
+      {txHash && (
         <div>
-          <p>IPFS URL: <a href={ipfsUrl}>{ipfsUrl}</a></p>
-        </div>
-      )}
-      {metadataUri && (
-        <div>
-          <p>Metadata URI: <a href={metadataUri}>{metadataUri}</a></p>
+          <p className="pr-2 m-3">Transaction Hash: <a href={`https://www.oklink.com/amoy/tx/${txHash}`} target='_blank'>{txHash}</a></p>
         </div>
       )}
   </Card>
