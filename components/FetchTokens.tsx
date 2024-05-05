@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Signer, ethers } from 'ethers';
+import { ethers } from 'ethers';
 import NftContract from '@/backend/ignition/deployments/chain-80002/artifacts/NftContractModule#NftContract.json'
 import address from '@/backend/ignition/deployments/chain-80002/deployed_addresses.json'
 import { useAccount } from 'wagmi';

@@ -1,7 +1,7 @@
 import FetchOwnedTokens from '@/components/FetchTokens'
 import React from 'react'
 
-const ViewPage = () => {
+export default function Page() {
   return (
     <div>
         <p className="text-large font-bold mb-3">
@@ -10,6 +10,4 @@ const ViewPage = () => {
         <FetchOwnedTokens />
     </div>
   )
-}
-
-export default ViewPage
+};
